@@ -38,30 +38,44 @@
             </form>
         </div>
     </nav>
-    <h1>Flight List</h1>
+    <h1>Flight Details</h1>
     <table id="list">
-        <thead>
-            <tr>
-                <th>Airline</th>
-                <th>Airport</th>
-                <th>Flight #</th>
-                <th>Departs</th>
-            </tr>
-        </thead>
         <tbody>
-            <% flights.forEach(function(f) {%>
+            <thead>
                 <tr>
-                    <td><%= f.airline %></td>
-                    <td><%= f.airport %></td>
-                    <td><%= f.flightNo %></td>
-                    <td><%= f.departs %></td>
-                    <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
-                    <!-- this _id is created for us by mongoose -->
+                    <th>Airline</th>
+                    <th>Airport</th>
+                    <th>Flight #</th>
+                    <th>Departs</th>
                 </tr>
-
-            <% }) %>
-            <!-- Close the forEach using EJS here -->
+            </thead>
+            <tr>
+                <td><%= flight.airline %></td>
+                <td><%= flight.airport %></td>
+                <td><%= flight.flightNo %></td>
+                <td><%= flight.departs %></td>
+            </tr>
         </tbody>
     </table>
+    <br></br><h2>Add New Destination</h2>
+    <form action="/flights/<%=flight._id %>/destinations" method="POST">
+        <label>Airport:
+            <select name="airport">
+                <option value="DEN" selected>DEN</option>
+                <option value="AUS">AUS</option>
+                <option value="DFW">DFW</option>
+                <option value="LAX">LAX</option>
+                <option value="SAN">SAN</option>
+            </select>
+        </label><br>
+        <label>Departs:
+            <input type="datetime-local" name="arrival">
+        </label><br>
+        <input type="submit" value="Add Destination">
+    </form>
+    <br></br><h2>Destination Details</h2>
+    <table id="list">
+        
+    </table>
 </body>
-</html>
+</html> 
