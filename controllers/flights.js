@@ -1,4 +1,5 @@
-const Flight = require('../models/flight')
+const Flight = require('../models/flight');
+const Ticket = require('../models/ticket');
 
 module.exports = {
     index,
@@ -17,7 +18,9 @@ function index(req, res) {
 
 function show(req, res) {
     Flight.findById(req.params.id, function(err, flight) {
-        res.render('flights/show', {flight})
+        Ticket.find({flight: flight._id}, function(err, tickets) {
+            res.render('flights/show', {flight, tickets})
+        })
     });
 }
 
@@ -27,11 +30,11 @@ function newFlight(req, res) {
 
 function create(req, res) {
     console.log('running create')
-    
-    // remove any whitespace at start and end of cast
-    //req.body.cast = req.body.cast.trim();
    
     const flight = new Flight(req.body);
+    console.log(flight.departs)
+    if (flight.departs === null) flight.departs = Date.now() + 365*24*60*60000;
+    console.log('after' + flight.departs)
     flight.save(function(err) {
     // one way to handle errors
     if (err) {

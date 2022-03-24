@@ -32,13 +32,8 @@ const flightSchema = new Schema({
 
     departs: {
         type: Date,
-        default: () => {
-            const currentDate = new Date();
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            const day = currentDate.getDate();
-            const oneYearLater = new Date(year + 1, month, day);
-            return oneYearLater;
+        default: function() {
+            return Date.now()
         }
     },
     

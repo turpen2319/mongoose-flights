@@ -39,7 +39,7 @@
         </div>
     </nav>
     <h1>Flight Details</h1>
-    <table id="list">
+    <table class="list">
         <tbody>
             <thead>
                 <tr>
@@ -74,8 +74,37 @@
         <input type="submit" value="Add Destination">
     </form>
     <br></br><h2>Destination Details</h2>
-    <table id="list">
-        
+    <table class="list">
+      <thead>
+          <tr>
+              <th>Airport</th>
+              <th>Departs</th>
+          </tr>
+      </thead>
+      <% flight.destinations.forEach(destination => { %>
+        <tr>
+            <td><%=destination.airport%></td>
+            <td><%=destination.arrival%></td> 
+        </tr>  
+      <% });%>
     </table>
+    <br></br><h2>Tickets</h2>
+    <table class="list">
+        <thead>
+            <tr>
+                <th>Seat</th>
+                <th>Price</th>
+                <th>Ticket#</th>
+            </tr>
+        </thead>
+        <% tickets.forEach(ticket => { %>
+          <tr>
+              <td><%=ticket.seat%></td>
+              <td><%=ticket.price%></td> 
+              <td><%=ticket._id%></td> 
+          </tr>  
+        <% });%>
+    </table>
+    <br></br><a id="new-ticket" href="/flights/<%=flight._id %>/tickets/new">New Ticket</a>
 </body>
 </html> 
