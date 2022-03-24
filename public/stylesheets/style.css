@@ -22,6 +22,10 @@ body {
   transform: scale(1.3);
 }
 
+#new-ticket-container {
+  padding-bottom: 20px;
+}
+
 table {
   font-size: 20px;
 }
